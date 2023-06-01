@@ -15,7 +15,7 @@ export const Home = () => {
   );
   const [inputValue, setInputValue] = useState();
   useEffect(() => {
-    getPokemonList({ limit: limit }).then((res) => {
+    getPokemonList().then((res) => {
       setOriginalListData(res);
       setCurrentListData(res.slice(0, limit));
     });
@@ -51,7 +51,7 @@ export const Home = () => {
     } else {
       setCurrentListData((prev) => {
         prev.sort((a, b) => {
-          return b[name] > a[name] ? -1 : 1;
+          return b[name] < a[name] ? -1 : 1;
         });
         return [...prev];
       });

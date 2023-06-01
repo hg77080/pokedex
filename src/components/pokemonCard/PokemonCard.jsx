@@ -37,8 +37,8 @@ export const PokemonCard = ({
       />
       <div className="card_content">
         <CommonTextBox label={"Name"} value={name} />
-        <CommonTextBox label={"Height"} value={height * 10} />
-        <CommonTextBox label={"Weight"} value={weight * 10} />
+        <CommonTextBox label={"Height"} value={height} />
+        <CommonTextBox label={"Weight"} value={weight} />
       </div>
       <div className="card_tag">
         {type?.split(",")?.map((ele) => (
