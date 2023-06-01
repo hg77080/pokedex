@@ -1,0 +1,116 @@
+.home_container {
+    padding: 2rem;
+    background: url("../../../public/bg.png");
+    min-height: 100vh;
+    /* background-color: #f2f2f2; */
+}
+
+.heading {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.pokemon_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.sort_filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search_bar {
+    position: relative;
+}
+
+.search_bar input {
+    margin-bottom: 12px;
+    padding: 12px 12px;
+    font-size: 16px;
+    color: #000 !important;
+    position: relative;
+    font-weight: 700;
+    opacity: 1;
+}
+.sort_select{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.sort_select a{
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sort_select select {
+    width: 200px;
+    padding: 12px 12px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+
+.sort_select select option {
+    width: 100%;
+    padding: 24px 12px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.search_icon {
+    position: absolute;
+    right: 12px;
+    z-index: 1;
+    color: #000;
+    opacity: 0.5;
+    top: 14px;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+    .pokemon_container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .pokemon_container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .home_container {
+        padding: 1rem;
+    }
+
+    .pokemon_container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .search_bar input {
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+
+    .sort_select select {
+        width: 100px;
+        padding: 6px 8px;
+    }
+
+    .search_icon {
+        top: 6px;
+    }
+}

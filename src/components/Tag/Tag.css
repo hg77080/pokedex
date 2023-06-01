@@ -1,0 +1,11 @@
+.custom_tag{
+    border: 1px solid #4c3eee;
+    /* box-shadow: 3px 3px 0 #ffd200; */
+    border-radius: 25px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17px;
+    padding: 8px 16px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,12 @@
+.load_button{
+    border: 1px solid #4c3eee;
+    box-shadow: 3px 3px 0 #ffd200;
+    color: #000;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    padding: 8px 12px;
+    display: flex;
+    margin: auto;
+    margin-top: 12px;
+}

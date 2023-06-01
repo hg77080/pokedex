@@ -1,0 +1,42 @@
+.card_box{
+    max-height: 430px;
+    max-width: 400px;
+    padding: 1rem;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,.12);
+    border-radius: 8px;
+}
+.card_box:hover{
+  transform: scale(1.02);
+}
+.card_box img{
+    height: 50%;
+    width: 100%;
+}
+.card_content{
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+.card_text_label{
+    font-size: 16px;
+    line-height: 20px;
+    color: black;
+    font-weight: 700;
+}
+.card_text_value{
+    font-size: 12px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: black;
+    font-weight: 600;
+    margin-top: 8px;
+}
+.card_tag{
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+}
