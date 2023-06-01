@@ -24,6 +24,8 @@ export const PokemonCard = ({
   setFavListData,
   pathname,
 }) => {
+  let IsFav = favListData?.some((ele) => ele.id === id);
+
   // const [pokemonData, setPokemonData] = useState();
   // useEffect(() => {
   //   getPokemonDetails({ url: url }).then((res) => {
@@ -34,7 +36,13 @@ export const PokemonCard = ({
     <div className="card_box">
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
-      />
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src =
+            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg";
+        }}
+      ></img>
+
       <div className="card_content">
         <CommonTextBox label={"Name"} value={name} />
         <CommonTextBox label={"Height"} value={height} />
@@ -47,25 +55,35 @@ export const PokemonCard = ({
       </div>
       {pathname !== "/favorite" && (
         <Button
-          text="Favorite"
+          text={!IsFav ? "Favorite" : "Favorited"}
           onClick={() => {
-            let updatedFavList = [
-              ...favListData,
-              {
-                id: id,
-                height: height,
-                weight: weight,
-                id: id,
-                type: type,
-                name: name,
-              },
-            ];
-            setFavListData(updatedFavList);
-            localStorage.setItem(
-              "favoriteData",
-              JSON.stringify(updatedFavList)
-            );
-            toast.success(`Add ${name} to Favorites`);
+            if (IsFav) {
+              let updatedFavList = favListData.filter((ele) => ele.id !== id);
+              setFavListData(updatedFavList);
+              localStorage.setItem(
+                "favoriteData",
+                JSON.stringify(updatedFavList)
+              );
+              toast.error(`Remove ${name} from Favorites`);
+            } else {
+              let updatedFavList = [
+                ...favListData,
+                {
+                  id: id,
+                  height: height,
+                  weight: weight,
+                  type: type,
+                  name: name,
+                  like: true,
+                },
+              ];
+              setFavListData(updatedFavList);
+              localStorage.setItem(
+                "favoriteData",
+                JSON.stringify(updatedFavList)
+              );
+              toast.success(`Add ${name} to Favorites`);
+            }
           }}
         />
       )}

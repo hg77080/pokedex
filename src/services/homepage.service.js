@@ -1,9 +1,7 @@
 import axios from "axios";
 
 export const getPokemonList = async () => {
-  const data = await axios.get(
-    `https://pokeapi.co/api/v2/pokemon/?limit=1200`
-  );
+  const data = await axios.get(`https://pokeapi.co/api/v2/pokemon/?limit=1200`);
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
@@ -14,6 +12,7 @@ export const getPokemonList = async () => {
       height: getRandomInt(100),
       weight: getRandomInt(1000),
       pokemon_type_name: Math.random().toString(36).substring(2, 7),
+      like: false,
     };
   });
   return updatedList;
