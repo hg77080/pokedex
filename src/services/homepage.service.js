@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getPokemonList = async ({ limit }) => {
   const data = await axios.get(
-    `https://in.portal-pokemon.com/play/pokedex/api/v1?limit=${limit}`
+    `api/v1?limit=${limit}`
   );
   return data?.data?.pokemons;
 };
