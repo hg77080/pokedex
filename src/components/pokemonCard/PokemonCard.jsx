@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./PokemonCard.css";
-import { getPokemonDetails } from "../../services/homepage.service";
 import { Tag } from "../Tag/Tag";
-import { Button } from "../Button/Button";
 import { toast } from "react-toastify";
+import { AiOutlineHeart,AiFillHeart } from "react-icons/ai";
 export const CommonTextBox = ({ label, value }) => {
   return (
     <>
@@ -24,16 +23,39 @@ export const PokemonCard = ({
   setFavListData,
   pathname,
 }) => {
-  let IsFav = favListData?.some((ele) => ele.id === id);
+  const IsFav = favListData?.some((ele) => ele.id === id);
+  const favHandler = () => {
+    if (IsFav) {
+      let updatedFavList = favListData.filter((ele) => ele.id !== id);
+      setFavListData(updatedFavList);
+      localStorage.setItem("favoriteData", JSON.stringify(updatedFavList));
+      toast.error(`Remove ${name} from Favorites`);
+    } else {
+      let updatedFavList = [
+        ...favListData,
+        {
+          id: id,
+          height: height,
+          weight: weight,
+          type: type,
+          name: name,
+          like: true,
+        },
+      ];
+      setFavListData(updatedFavList);
+      localStorage.setItem("favoriteData", JSON.stringify(updatedFavList));
+      toast.success(`Add ${name} to Favorites`);
+    }
+  };
 
-  // const [pokemonData, setPokemonData] = useState();
-  // useEffect(() => {
-  //   getPokemonDetails({ url: url }).then((res) => {
-  //     setPokemonData(res);
-  //   });
-  // }, []);
   return (
     <div className="card_box">
+      {pathname !== "/favorite" && (
+        <div className="fav_icon" onClick={favHandler}>
+          {!IsFav ? <AiOutlineHeart /> : <AiFillHeart />}
+        </div>
+      )}
+
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
         onError={({ currentTarget }) => {
@@ -41,7 +63,8 @@ export const PokemonCard = ({
           currentTarget.src =
             "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg";
         }}
-      ></img>
+        alt="name"
+      />
 
       <div className="card_content">
         <CommonTextBox label={"Name"} value={name} />
@@ -53,40 +76,6 @@ export const PokemonCard = ({
           <Tag name={ele} />
         ))}
       </div>
-      {pathname !== "/favorite" && (
-        <Button
-          text={!IsFav ? "Favorite" : "Favorited"}
-          onClick={() => {
-            if (IsFav) {
-              let updatedFavList = favListData.filter((ele) => ele.id !== id);
-              setFavListData(updatedFavList);
-              localStorage.setItem(
-                "favoriteData",
-                JSON.stringify(updatedFavList)
-              );
-              toast.error(`Remove ${name} from Favorites`);
-            } else {
-              let updatedFavList = [
-                ...favListData,
-                {
-                  id: id,
-                  height: height,
-                  weight: weight,
-                  type: type,
-                  name: name,
-                  like: true,
-                },
-              ];
-              setFavListData(updatedFavList);
-              localStorage.setItem(
-                "favoriteData",
-                JSON.stringify(updatedFavList)
-              );
-              toast.success(`Add ${name} to Favorites`);
-            }
-          }}
-        />
-      )}
     </div>
   );
 };

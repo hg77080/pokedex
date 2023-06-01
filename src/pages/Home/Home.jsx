@@ -41,21 +41,18 @@ export const Home = () => {
   }, [inputValue]);
   // sort functionality
   const handleSort = ({ name, type }) => {
-    if (type === "asc") {
-      setCurrentListData((prev) => {
+    setCurrentListData((prev) => {
+      if (type === "asc") {
         prev.sort((a, b) => {
           return a[name] < b[name] ? -1 : 1;
         });
-        return [...prev];
-      });
-    } else {
-      setCurrentListData((prev) => {
+      } else {
         prev.sort((a, b) => {
           return b[name] < a[name] ? -1 : 1;
         });
-        return [...prev];
-      });
-    }
+      }
+      return [...prev];
+    });
   };
   return (
     <>
@@ -82,15 +79,14 @@ export const Home = () => {
               }}
             >
               <option disabled selected value>
-                {" "}
-                -- select an option --{" "}
+                Sort By
               </option>
-              <option value="pokemon_name asc"> Name(Asc) </option>
-              <option value="pokemon_name desc"> Name(Desc) </option>
-              <option value="height asc"> Height(Asc)</option>
-              <option value="height desc"> Height(Desc)</option>
-              <option value="weight asc"> Weight(Asc) </option>
-              <option value="weight desc"> Weight(Desc) </option>
+              <option value="pokemon_name asc"> Name(A - Z) </option>
+              <option value="pokemon_name desc"> Name(Z - A) </option>
+              <option value="height asc"> Height(A - Z)</option>
+              <option value="height desc"> Height(Z - A)</option>
+              <option value="weight asc"> Weight(A - Z) </option>
+              <option value="weight desc"> Weight(Z - A) </option>
             </select>
           </div>
         </div>
